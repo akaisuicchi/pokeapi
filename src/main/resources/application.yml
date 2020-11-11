@@ -1,1 +1,13 @@
+work:
+  theapp:
+    external:
+      pokeapi:
+        uri: 'https://pokeapi.co/api/v2'
+        species: '/pokemon-species'
+        pokemon-species: '/pokemon-species/{id}'
+        pokemon: '/pokemon/{id}'
+        limit: 20
+
+server:
+  port: 9090
 
