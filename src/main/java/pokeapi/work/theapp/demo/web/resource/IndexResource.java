@@ -13,7 +13,7 @@ import java.net.URI;
 public class IndexResource {
     @Bean
     public RouterFunction<ServerResponse> routes() {
-        var server = RouterFunctions
+        RouterFunction<ServerResponse> server = RouterFunctions
                 .route()
                 .GET("/", (ServerRequest request) -> ServerResponse.temporaryRedirect(URI.create(PokedexResource.ENDPOINT)).build())
                 .build();

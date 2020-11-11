@@ -19,7 +19,7 @@ public abstract class BaseResource {
     public abstract String endpoint();
 
     public RouterFunction<ServerResponse> resources() {
-        var api = RouterFunctions
+        RouterFunction<ServerResponse> api = RouterFunctions
                 .route()
                 .GET(this.endpoint(), handler::apiGetAll)
                 .POST(this.endpoint(), contentType(MediaType.APPLICATION_JSON), handler::apiPost)
@@ -32,7 +32,7 @@ public abstract class BaseResource {
                 )
                 .build();
 
-        var server = RouterFunctions
+        RouterFunction<ServerResponse> server = RouterFunctions
                 .route()
                 .GET(this.endpoint(), accept(MediaType.TEXT_HTML), handler::index)
                 .POST(this.endpoint(), accept(MediaType.TEXT_HTML).and(contentType(MediaType.APPLICATION_FORM_URLENCODED)), handler::store)
