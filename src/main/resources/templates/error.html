@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{default.layout}">
+<head>
+    <title>MissingNo</title>
+</head>
+<body>
+    <th:block layout:fragment="content">
+        <div class="flex flex-col py-16 justify-between h-full items-center">
+            <img class="rounded-md" th:src="@{/images/missingno.jpg}" alt="Missing No">
+            
+            <h2 class="text-5xl">Something is Missing</h2>
+
+            <a class="underline text-4xl font-semibold" data-turbolinks-action="replace" th:href="@{/pokedex}">Go back to Pokedex</a>
+        </div>
+    </th:block>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html class="h-full" lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title layout:title-pattern="$CONTENT_TITLE | $LAYOUT_TITLE">PokeApi</title>
+    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <script defer th:src="@{/js/scripts.js}"></script>
+</head>
+<body class="bg-gray-200 h-full container mx-auto flex flex-col antialiased">
+    <th:block layout:fragment="header"/>
+
+    <section class="flex-1 p-4 overflow-y-auto relative">
+        <th:block layout:fragment="content"/>
+    </section>
+
+    <th:block layout:fragment="footer"/>
+</body>
+</html>

@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+    <th:block th:fragment="list(pokedex)">
+        <th:block th:each="result: ${pokedex}">
+            <a th:href="@{'pokemon/' + ${result.id}}" class="hover:shadow-lg cursor-pointer bg-gray-300 mb-2 w-full h-20 flex items-center justify-between shadow-md p-2 rounded-md">
+                <img class="w-20 h-20 object-cover" loading="lazy" th:src="${'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/' + result.id + '.png'}" th:alt="${result.name}">
+
+                <span class="uppercase font-semibold" th:text="${result.name}"></span>
+
+                <button class="w-12 h-12 p-2 rounded-full">
+                    <svg class="pointer-events-none w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </a>
+        </th:block>
+    </th:block>
+</body>
+</html>
