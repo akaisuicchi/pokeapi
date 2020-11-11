@@ -12,7 +12,11 @@ configurations {
     compileOnly {
         extendsFrom annotationProcessor
     }
+    testCompileOnly {
+        extendsFrom testAnnotationProcessor
+    }
 }
+
 
 repositories {
     mavenCentral()
@@ -21,9 +25,12 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.10.5'
     compileOnly 'org.projectlombok:lombok'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
     annotationProcessor 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
