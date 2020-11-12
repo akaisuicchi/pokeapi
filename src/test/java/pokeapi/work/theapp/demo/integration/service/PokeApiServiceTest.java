@@ -108,6 +108,14 @@ public class PokeApiServiceTest extends AbstractServiceTest {
     }
 
     @Test
+    public void whenIncomplete8thGenerationPokemonThenShouldSafelyReturnPokemon() {
+        PokemonSpecies pokemonSpecies = this.service.getPokemonSpecies(890);
+
+        assertNotNull(pokemonSpecies);
+        assertNull(pokemonSpecies.getEvolutionChain());
+    }
+
+    @Test
     public void whenSpeciesByIdDoesNotExistsThenReturnNull() {
         PokemonSpecies pokemonSpecies = this.service.getPokemonSpecies(1000);
 
