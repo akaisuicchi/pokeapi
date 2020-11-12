@@ -25,7 +25,7 @@ public class PokemonService {
 
         PokemonResponse response = PokemonResponse.fromPokemon(pokemon);
 
-        if (pokemonSpecies != null) {
+        if (pokemonSpecies != null && pokemonSpecies.getEvolutionChain() != null) {
             evolutionChain = this.service.getPokemonSpeciesEvolutionChain(pokemonSpecies.getEvolutionChain().getUrl());
             response.addEvolutionChain(evolutionChain.getChain());
         }
