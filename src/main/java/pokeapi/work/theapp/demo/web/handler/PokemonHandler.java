@@ -5,12 +5,12 @@ import org.springframework.web.servlet.function.ServerRequest;
 import org.springframework.web.servlet.function.ServerResponse;
 import pokeapi.work.theapp.demo.model.response.PokemonResponse;
 import pokeapi.work.theapp.demo.service.PokemonService;
+import pokeapi.work.theapp.demo.web.error.PokemonNotFoundException;
 import pokeapi.work.theapp.demo.web.resource.PokedexResource;
 
 import java.net.URI;
 import java.util.Collections;
 
-import static org.springframework.web.servlet.function.ServerResponse.notFound;
 import static org.springframework.web.servlet.function.ServerResponse.permanentRedirect;
 
 @Component
@@ -33,7 +33,7 @@ public class PokemonHandler extends BaseHandler implements DefaultResourceHandle
         PokemonResponse response = this.service.getPokemonDetails(id);
 
         if (response == null) {
-            return notFound().build();
+            throw new PokemonNotFoundException();
         }
 
         return renderView("show", Collections.singletonMap("pokemon", response));
