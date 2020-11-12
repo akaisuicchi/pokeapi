@@ -1,0 +1,90 @@
+spring:
+  devtools:
+    add-properties: false
+    livereload:
+      enabled: false
+
+  data:
+    redis:
+      repositories:
+        enabled: false
+    elasticsearch:
+      repositories:
+        enabled: false
+    jdbc:
+      repositories:
+        enabled: false
+    jpa:
+      repositories:
+        enabled: false
+    ldap:
+      repositories:
+        enabled: false
+    neo4j:
+      embedded:
+        enabled: false
+      repositories:
+        enabled: false
+    r2dbc:
+      repositories:
+        enabled: false
+    solr:
+      repositories:
+        enabled: false
+
+  flyway:
+    enabled: false
+
+  artemis:
+    embedded:
+      enabled: false
+
+  batch:
+    job:
+      enabled: false
+
+  dao:
+    exceptiontranslation:
+      enabled: false
+
+  freemarker:
+    enabled: false
+  groovy:
+    template:
+      enabled: false
+
+  jms:
+    cache:
+      enabled: false
+
+  jta:
+    bitronix:
+      connectionfactory:
+        automatic-enlisting-enabled: false
+      datasource:
+        automatic-enlisting-enabled: false
+    enabled: false
+
+  ldap:
+    embedded:
+      validation:
+        enabled: false
+
+  liquibase:
+    enabled: false
+
+  mustache:
+    enabled: false
+
+  servlet:
+    multipart:
+      enabled: false
+
+  main:
+    log-startup-info: false
+    banner-mode: off
+    cloud-platform: heroku
+
+logging:
+  level:
+    web: INFO

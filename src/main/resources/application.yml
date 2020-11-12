@@ -11,3 +11,8 @@ work:
 server:
   port: ${PORT:9090}
 
+logging:
+  level:
+    pokeapi.work.theapp.demo: DEBUG
+    web: DEBUG
+
