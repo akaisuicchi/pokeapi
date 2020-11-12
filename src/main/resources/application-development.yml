@@ -52,6 +52,8 @@ spring:
   groovy:
     template:
       enabled: false
+  thymeleaf:
+    cache: true
 
   jms:
     cache:

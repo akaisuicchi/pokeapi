@@ -20,6 +20,11 @@ public class PokemonService {
         int pokemonId = Utilities.stringToInt(id);
 
         Pokemon pokemon = this.service.getOnePokemon(pokemonId);
+
+        if (pokemon == null) {
+            return null;
+        }
+
         PokemonSpecies pokemonSpecies = this.service.getPokemonSpecies(pokemonId);
         EvolutionChain evolutionChain;
 

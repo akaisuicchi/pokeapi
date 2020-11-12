@@ -8,11 +8,18 @@ work:
         pokemon: '/pokemon/{id}'
         limit: 20
 
+
 server:
   port: ${PORT:9090}
+  error:
+    whitelabel:
+      enabled: false
 
 logging:
   level:
     pokeapi.work.theapp.demo: DEBUG
     web: DEBUG
 
+spring:
+  thymeleaf:
+    cache: false
