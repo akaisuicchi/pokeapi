@@ -4,10 +4,13 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import pokeapi.work.theapp.demo.model.response.PokedexResponse;
 import pokeapi.work.theapp.demo.service.PokedexService;
 import pokeapi.work.theapp.demo.web.handler.PokedexHandler;
 import pokeapi.work.theapp.demo.web.resource.PokedexResource;
+import pokeapi.work.theapp.demo.web.resource.PokemonResource;
 
 import java.util.Collections;
 import java.util.List;
@@ -65,6 +68,20 @@ public class PokedexResourceTest extends AbstractWebTest {
                 .andExpect(view().name(containsString("pokedex/index")))
                 .andExpect(model().attributeExists("pokedex"))
                 .andExpect(content().string(containsString(mock.getName())))
+        ;
+    }
+
+    @Test
+    public void whenAddPathIdToUrlRedirectToPokemonId() throws Exception {
+        int id = 150;
+
+        this.client
+                .perform(
+                        get(PokedexResource.ENDPOINT + "/{id}", id)
+                                .accept(MediaType.TEXT_HTML)
+                )
+                .andExpect(status().is3xxRedirection())
+                .andExpect(redirectedUrl(String.format("%s/%s", PokemonResource.ENDPOINT, id)))
         ;
     }
 

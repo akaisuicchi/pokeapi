@@ -4,9 +4,13 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.function.ServerRequest;
 import org.springframework.web.servlet.function.ServerResponse;
 import pokeapi.work.theapp.demo.service.PokedexService;
+import pokeapi.work.theapp.demo.web.resource.PokemonResource;
 
+import java.net.URI;
 import java.util.Collections;
 import java.util.Map;
+
+import static org.springframework.web.servlet.function.ServerResponse.permanentRedirect;
 
 @Component
 public class PokedexHandler extends BaseHandler implements DefaultResourceHandler {
@@ -29,6 +33,14 @@ public class PokedexHandler extends BaseHandler implements DefaultResourceHandle
         }
 
         return renderView("index", model);
+    }
+
+    @Override
+    public ServerResponse show(ServerRequest request) {
+        String id = request.pathVariable("id");
+        String uri = String.format("%s/%s", PokemonResource.ENDPOINT, id);
+
+        return permanentRedirect(URI.create(uri)).build();
     }
 
     @Override
