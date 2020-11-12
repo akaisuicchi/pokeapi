@@ -8,6 +8,13 @@ work:
         pokemon: '/pokemon/{id}'
         limit: 20
 
+
 server:
   port: 9090
+  error:
+    whitelabel:
+      enabled: false
 
+spring:
+  thymeleaf:
+    cache: false
