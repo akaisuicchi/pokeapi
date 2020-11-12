@@ -19,30 +19,40 @@
 
     <th:block layout:fragment="content">
         <div class="w-full p-4 rounded-md shadow-md flex flex-col items-center">
-            <img class="w-32 h-32 object-cover" loading="lazy" th:src="${'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/' + pokemon.id + '.png'}" th:alt="${pokemon.name}">
-
-            <span class="text-2xl uppercase font-semibold" th:text="${pokemon.name}"></span>
-
-            <div class="flex w-full my-4 text-center font-semibold uppercase">
-                <th:block th:each="type : ${pokemon.types}">
-                    <span th:style="'background-color: ' + ${type.color}" class="flex-1 py-4 text-lg text-gray-200" th:text="${type.name}"></span>
+            <div class="w-full relative flex flex-col items-center">
+                <th:block th:each="type,iteration : ${pokemon.types}">
+                    <div th:classappend="${iteration.index == 0 ? 'left-0 w-full' : 'w-1/2 right-0 z-10'}"
+                         th:style="'background-color: ' + ${type.color}"
+                         class="absolute top-0 h-full"></div>
                 </th:block>
+
+                <div class="flex flex-col items-center z-20 w-full text-gray-100">
+                    <th:block th:replace="fragments/components :: image(${pokemon.id}, ${pokemon.name}, 'w-32 h-32')"/>
+
+                    <span class="text-2xl uppercase font-semibold" th:text="${pokemon.name}"></span>
+
+                    <div class="flex w-full my-4 text-center font-semibold uppercase">
+                        <th:block th:each="type : ${pokemon.types}">
+                            <span class="flex-1 py-4 text-lg" th:text="${type.name}"></span>
+                        </th:block>
+                    </div>
+                </div>
             </div>
 
             <div class="grid grid-cols-3 gap-4 my-4 w-full pointer-events-none">
                 <div class="flex font-semibold text-center flex-col" th:each="stat : ${pokemon.stats}">
                     <span class="uppercase text-4xl mb-2" th:text="${stat.value}"></span>
-                    <span class="uppercase" th:text="${stat.name}"></span>
+                    <span class="uppercase text-sm" th:text="${stat.name}"></span>
                 </div>
             </div>
 
             <div class="my-4 w-full uppercase">
                 <span class="text-xl mb-4 block font-semibold">Evolutions</span>
-                <div class="overflow-x-auto">
-                    <div class="w-full flex flex-row items-center justify-center text-center ">
+                <div class="-mx-4 overflow-x-auto">
+                    <div class="w-full flex flex-row justify-center text-center ">
                         <th:block th:each="evolution : ${pokemon.evolutions}">
                             <div th:if="${evolution.trigger != null}" class="flex-1 flex flex-row mx-2">
-                                <div class="flex text-sm flex-col items-center justify-between">
+                                <div class="flex text-sm flex-col items-center justify-around">
                                     <span class="font-xl" th:text="${evolution.requiredLevel}"></span>
                                     <span class="font-xl" th:text="${evolution.itemName}"></span>
 
