@@ -26,11 +26,11 @@ jobs:
 
       - name: Unit tests
         id: unit-test
-        run: gradle -q test --tests "pokeapi.work.theapp.demo.unit.*"
+        run: gradle -q test --tests "work.theapp.pokeapi.unit.*"
 
       - name: Integration tests
         id: integration-test
-        run: gradle -q test --tests "pokeapi.work.theapp.demo.integration.*"
+        run: gradle -q test --tests "work.theapp.pokeapi.integration.*"
 
       - uses: actions/upload-artifact@v2
         if: ${{ failure() }}

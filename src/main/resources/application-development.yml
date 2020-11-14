@@ -87,6 +87,12 @@ spring:
     banner-mode: off
     cloud-platform: heroku
 
+  resources:
+    chain:
+      strategy:
+        content:
+          enabled: true
+
 logging:
   level:
     web: INFO
