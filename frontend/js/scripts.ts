@@ -3,10 +3,10 @@ import Turbolinks from 'turbolinks';
 Turbolinks.start();
 
 document.addEventListener('turbolinks:load', () => {
-    pokedexScripts();
+    pagePokedexScripts();
 })
 
-const pokedexScripts = () => {
+const pagePokedexScripts = () => {
     const more = document.querySelector('#more') as HTMLButtonElement;
     const pokedex = document.querySelector('#pokedex') as HTMLDivElement;
     const limit = document.querySelector('#limit') as HTMLSelectElement;
@@ -22,7 +22,7 @@ const pokedexScripts = () => {
 
     if (more) {
         // @ts-ignore
-        more.addEventListener('click', async (event) => {
+        more.addEventListener('click', async () => {
             more.disabled = true;
 
             const location = window.location;
@@ -62,9 +62,13 @@ const pokedexScripts = () => {
             return;
         }
 
+        const fragment = new DocumentFragment();
         const parser = new DOMParser();
         const html = parser.parseFromString(response as string, 'text/html');
-        pokedex.appendChild(html.body);
+
+        // @ts-ignore
+        Array.from(html.body.querySelectorAll('a')).forEach(el => fragment.appendChild(el));
+        pokedex.appendChild(fragment);
     }
 
     const updateUrlState = (path: string) => {

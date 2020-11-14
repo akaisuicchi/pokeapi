@@ -8,9 +8,9 @@
 </head>
 <body>
     <th:block layout:fragment="header">
-        <header class="h-20 bg-gray-300 flex items-center p-4 z-10 shadow-md">
+        <header class="h-20 bg-red-500 text-gray-100 flex items-center p-4 z-10 shadow-md">
             <a th:href="@{/pokedex}" title="Go back to Pokedex" data-turbolinks-action="replace" class="colored-navlink active:font-semibold hover:font-semibold w-16 h-16 bg-opacity-25 text-gray-800 rounded-full flex flex-col items-center justify-center">
-                <svg class="w-8 h-8 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                <svg class="w-8 h-8 text-gray-100 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
             </a>
 
             <h1 class="text-xl uppercase" th:text="${pokemon.name}"></h1>
@@ -46,35 +46,7 @@
                 </div>
             </div>
 
-            <div class="my-4 w-full uppercase">
-                <span class="text-xl mb-4 block font-semibold">Evolutions</span>
-                <div class="-mx-4 overflow-x-auto">
-                    <div class="w-full flex flex-row justify-center text-center ">
-                        <th:block th:each="evolution : ${pokemon.evolutions}">
-                            <div th:if="${evolution.trigger != null}" class="flex-1 flex flex-row mx-2">
-                                <div class="flex text-sm flex-col items-center justify-around">
-                                    <span class="font-xl" th:text="${evolution.requiredLevel}"></span>
-                                    <span class="font-xl" th:text="${evolution.itemName}"></span>
-
-                                    <th:block th:if="${evolution.minHappiness != null}">
-                                        <span class="font-xl" th:text="${evolution.minHappiness}"></span>
-                                        <span class="font-semibold">Happiness</span>
-                                    </th:block>
-
-                                    <span class="font-semibold" th:text="${evolution.trigger}"></span>
-                                </div>
-                            </div>
-
-                            <div class="w-64 flex flex-row mx-2">
-                                <a th:href="@{'/pokemon/' + ${evolution.id}}" class="hover:bg-red-500 hover:text-gray-100 rounded-md border border-red-500 p-2 flex-1 items-center justify-center flex flex-col">
-                                    <img class="w-32 h-32 object-cover" loading="lazy" th:src="${'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/' + evolution.id + '.png'}" th:alt="${evolution.name}">
-                                    <span class="text-xs font-semibold" th:text="${evolution.name}"></span>
-                                </a>
-                            </div>
-                        </th:block>
-                    </div>
-                </div>
-            </div>
+            <th:block th:replace="pokemon/fragments/components :: section-evolution(${pokemon.evolutions})"/>
 
             <div class="my-4 w-full uppercase">
                 <span class="text-xl mb-4 block font-semibold">Abilities</span>

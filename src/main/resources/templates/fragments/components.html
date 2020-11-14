@@ -2,7 +2,7 @@
 <html lang="en"
       xmlns:th="http://www.thymeleaf.org">
 <body>
-    <img th:fragment="image(pokemonId, pokemonName, classes)" th:classappend="${classes}" class="rounded-full object-cover" loading="lazy"
+    <img th:fragment="image(pokemonId, pokemonName, classes)" th:classappend="${classes}" class="z-20 rounded-full object-cover" loading="lazy"
          th:src="${'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-vii/ultra-sun-ultra-moon/' + pokemonId + '.png'}"
          th:onerror="'this.onerror=null;this.src=\'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + ${pokemonId} + '.png\''"
          th:alt="${pokemonName.toUpperCase()}">
